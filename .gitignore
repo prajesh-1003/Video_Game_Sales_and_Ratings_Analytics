@@ -1,0 +1,12 @@
+# Mac OS
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Docker volumes
+pgdata/

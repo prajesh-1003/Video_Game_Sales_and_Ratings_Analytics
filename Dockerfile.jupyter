@@ -1,0 +1,29 @@
+# Dockerfile.jupyter
+# Container for running Jupyter Notebook connected to PostgreSQL
+
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies for psycopg2 and Jupyter
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt /app/requirements.txt
+
+# Install Python dependencies including Jupyter Notebook
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir notebook
+
+# Copy all project files
+COPY . /app
+
+# Expose Jupyter Notebook port
+EXPOSE 8888
+
+# Start Jupyter Notebook server
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=", "--NotebookApp.password="]

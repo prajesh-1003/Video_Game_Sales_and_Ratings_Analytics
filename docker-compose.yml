@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: dmql_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: videogamesdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - dmql_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: dmql_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - dmql_network
+
+  ingestion:
+    build:
+      context: .
+      dockerfile: Dockerfile.ingestion
+    container_name: dmql_ingestion
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    networks:
+      - dmql_network
+    command: ["sleep", "infinity"]  # manual run
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    container_name: dmql_jupyter
+    ports:
+      - "9000:8888"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    networks:
+      - dmql_network
+    command: ["jupyter", "notebook", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+
+networks:
+  dmql_network:
+
+volumes:
+  pgdata:
