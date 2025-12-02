@@ -1,12 +1,60 @@
-# Mac OS
+# -----------------------
+# MacOS system files
+# -----------------------
 .DS_Store
+.Trashes
+*.swp
 
-# Python cache
+# -----------------------
+# Python cache & virtual env
+# -----------------------
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
 
-# Jupyter checkpoints
+# -----------------------
+# Jupyter Notebook
+# -----------------------
 .ipynb_checkpoints/
 
-# Docker volumes
+# -----------------------
+# DBT build artifacts
+# -----------------------
+dbt_packages/
+target/
+logs/
+
+# Those SHOULD be committed.
+
+# -----------------------
+# Docker local volumes (PostgreSQL data)
+# -----------------------
 pgdata/
+postgres_data/
+*/pgdata/
+
+# -----------------------
+# VSCode / IDE specific
+# -----------------------
+.vscode/
+.idea/
+
+# -----------------------
+# Temporary or backup files
+# -----------------------
+*.tmp
+*.log
+*.bak
+*.old
+
+# -----------------------
+# Node (if you ever add UI later)
+# -----------------------
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
