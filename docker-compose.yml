@@ -39,7 +39,7 @@ services:
       - postgres
     networks:
       - dmql_network
-    command: ["sleep", "infinity"]  # manual run
+    command: ["sleep", "infinity"]
 
   jupyter:
     build:
@@ -55,6 +55,21 @@ services:
     networks:
       - dmql_network
     command: ["jupyter", "notebook", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+
+  dbt:
+    build:
+      context: .
+      dockerfile: Dockerfile.dbt
+    container_name: dmql_dbt
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - dmql_network
+    command: ["sleep", "infinity"]
 
 networks:
   dmql_network:

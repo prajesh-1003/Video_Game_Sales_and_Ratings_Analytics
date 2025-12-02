@@ -1,4 +1,3 @@
-
 --  ROLE-BASED ACCESS CONTROL (RBAC) CONFIGURATION
 
 -- 1. CREATE ROLES (No inheritance for security)
@@ -17,11 +16,10 @@ GRANT CONNECT ON DATABASE videogamesdb TO app_user;
 -- Analyst: read-only access to schema
 GRANT USAGE ON SCHEMA public TO analyst_user;
 
--- Application: usage only (NO CREATE!)
+-- Application user: usage only (NO CREATE!)
 GRANT USAGE ON SCHEMA public TO app_user;
 
--- IMPORTANT: app_user should NOT have CREATE on schema
--- So we ensure it is revoked (in case previously granted)
+-- Ensure app_user cannot create tables
 REVOKE CREATE ON SCHEMA public FROM app_user;
 
 -- 5. TABLE-LEVEL PERMISSIONS
@@ -49,27 +47,27 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON
 TO app_user;
 
 -- 6. SEQUENCE PERMISSIONS (required for AUTO INCREMENT)
--- Analyst: can read sequences (not modify)
+
+-- Analyst: can only read sequences
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO analyst_user;
 
--- Application user: can use sequences for INSERTs (safe)
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO app_user;
+-- Application user: must be able to increment sequences → need UPDATE
+GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA public TO app_user;
 
--- 7. DEFAULT PRIVILEGES (FOR FUTURE TABLES & SEQUENCES)
+-- 7. DEFAULT PRIVILEGES (FUTURE TABLES AND SEQUENCES)
 
--- For future tables (analyst = read only)
+-- Future tables (analyst read-only)
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
 GRANT SELECT ON TABLES TO analyst_user;
 
--- For future tables (app_user = CRUD)
+-- Future tables (app_user CRUD)
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO app_user;
 
--- Future sequences (analyst can read)
+-- Future sequences (analyst read)
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
 GRANT USAGE, SELECT ON SEQUENCES TO analyst_user;
 
--- Future sequences (app_user can use them)
+-- Future sequences (app_user must use and update)
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
-GRANT USAGE, SELECT ON SEQUENCES TO app_user;
-
+GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO app_user;
