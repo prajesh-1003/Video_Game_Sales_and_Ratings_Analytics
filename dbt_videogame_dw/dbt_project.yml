@@ -1,0 +1,28 @@
+name: 'videogame_dw'
+version: '1.0.0'
+config-version: 2
+
+profile: 'videogame_dw'
+
+# Where models live
+model-paths: ["models"]
+
+# Where dbt will store compiled SQL + temp artifacts
+target-path: "target"  
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  videogame_dw:
+    staging:
+      +schema: dw
+      +materialized: view
+
+    dimensions:
+      +schema: dw
+      +materialized: table
+
+    facts:
+      +schema: dw
+      +materialized: table

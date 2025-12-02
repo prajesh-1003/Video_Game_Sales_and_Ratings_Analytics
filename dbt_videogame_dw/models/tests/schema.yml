@@ -1,0 +1,57 @@
+version: 2
+
+models:
+
+  - name: dim_game
+    columns:
+      - name: game_id
+        tests:
+          - unique
+          - not_null
+      - name: game_name
+        tests:
+          - not_null
+
+  - name: dim_genre
+    columns:
+      - name: genre_id
+        tests:
+          - unique
+          - not_null
+      - name: genre_name
+        tests:
+          - not_null
+
+  - name: dim_platform
+    columns:
+      - name: platform_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_publisher
+    columns:
+      - name: publisher_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_developer
+    columns:
+      - name: developer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_sales
+    columns:
+      - name: sales_id
+        tests:
+          - unique
+          - not_null
+      - name: game_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_game')
+              field: game_id
