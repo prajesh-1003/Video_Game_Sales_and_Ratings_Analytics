@@ -1,0 +1,19 @@
+# Dockerfile.dbt
+
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies needed by dbt
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dbt postgres adapter
+RUN pip install --no-cache-dir dbt-postgres
+
+# Copy entire project (so dbt sees models)
+COPY . /app
+
+CMD ["sleep", "infinity"]
