@@ -15,7 +15,7 @@ Follow these steps to set up the complete environment.
 ###  1. Clone the Repository
 
 ```bash
-git clone <https://github.com/prajesh-1003/Video_Game_Sales_and_Ratings_Analytics.git>
+git clone https://github.com/prajesh-1003/Video_Game_Sales_and_Ratings_Analytics.git
 cd Video_Game_Sales_and_Ratings_Analytics
 ```
 
@@ -199,7 +199,7 @@ Fully interactive dashboard includes:
 
 #  4. Demo Video
 
->  **Demo Video Link:** *Paste Google Drive / YouTube URL here*
+>  **Demo Video Link:** *https://youtu.be/iYGXmtCicCY*
 
 ---
 
