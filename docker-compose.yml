@@ -71,6 +71,20 @@ services:
       - dmql_network
     command: ["sleep", "infinity"]
 
+  streamlit:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.streamlit
+    container_name: dmql_streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres
+    networks:
+      - dmql_network
+    volumes:
+      - ./app/streamlit:/app/streamlit
+
 networks:
   dmql_network:
 
