@@ -12,14 +12,14 @@ This repository contains the complete implementation of the **DMQL (Data Mining 
 
 Follow these steps to set up the complete environment.
 
-### ** 1. Clone the Repository**
+###  1. Clone the Repository
 
 ```bash
-git clone <your-github-repo-url>
+git clone <https://github.com/prajesh-1003/Video_Game_Sales_and_Ratings_Analytics.git>
 cd Video_Game_Sales_and_Ratings_Analytics
 ```
 
-### ** 2. Ensure Docker & Docker Compose Are Installed**
+###  2. Ensure Docker & Docker Compose Are Installed
 
 * Install Docker Desktop from: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
 * Confirm installation:
@@ -29,7 +29,7 @@ docker --version
 docker-compose --version
 ```
 
-### ** 3. Project Folder Structure**
+###  3. Project Folder Structure
 
 ```
 VIDEO_GAME_SALES_AND_RATINGS_ANALYTICS/
@@ -83,7 +83,7 @@ VIDEO_GAME_SALES_AND_RATINGS_ANALYTICS/
 
 # 2. Execution Instructions (How to Run the Entire Project)
 
-### ** 1. Start all services (Postgres, pgAdmin, dbt, Jupyter, Streamlit):**
+###  1. Start all services (Postgres, pgAdmin, dbt, Jupyter, Streamlit):
 
 ```bash
 docker-compose up -d
@@ -97,7 +97,7 @@ This launches:
 * Jupyter Notebook
 * Streamlit Dashboard
 
-### ** 2. Access the Services**
+###  2. Access the Services**
 
 | Service                 | URL                                            |
 | ----------------------- | ---------------------------------------------- |
@@ -105,7 +105,7 @@ This launches:
 | **pgAdmin**             | [http://localhost:5050](http://localhost:5050) |
 | **Jupyter Notebook**    | [http://localhost:9000](http://localhost:9000) |
 
-### ** 3. Stop all services (data is preserved):**
+###  3. Stop all services (data is preserved):
 
 ```bash
 docker-compose down
@@ -123,7 +123,7 @@ This deletes your database volume.
 
 # 3. What Each Phase Implements
 
-## ** Phase 1 — OLTP Schema, Normalization, RBAC, Ingestion Prep**
+##  Phase 1 — OLTP Schema, Normalization, RBAC, Ingestion Prep
 
 * Designed a fully normalized 3NF schema for:
 
@@ -141,7 +141,7 @@ This deletes your database volume.
 
 ---
 
-## ** Phase 2 — Analytical SQL, Performance Tuning, Data Warehouse (dbt)**
+##  Phase 2 — Analytical SQL, Performance Tuning, Data Warehouse (dbt)
 
 * Wrote all required advanced analytical SQL queries.
 * Performed performance tuning using `EXPLAIN ANALYZE`.
@@ -157,7 +157,7 @@ This deletes your database volume.
 
 ---
 
-## ** Phase 3 — Interactive Streamlit Dashboard (Final Application Layer)**
+##  Phase 3 — Interactive Streamlit Dashboard (Final Application Layer)
 
 Fully interactive dashboard includes:
 
@@ -179,7 +179,7 @@ Fully interactive dashboard includes:
 ![Top 10 Best-Selling Games](images/Top10Games.png)
 
 3. **A. Sales by Genre (Bar chart)** 
-![Sales by Genre (Bar Chart)](images/SalesByGenre_bar.png)
+![Sales by Genre (Bar Chart)](images/SalesByGenre_Bar.png)
 
 3. **B. Sales by Genre (Pie chart)** 
 ![Sales by Genre (Pie Chart)](images/SalesByGenre_PieChart.png)
@@ -203,7 +203,17 @@ Fully interactive dashboard includes:
 
 ---
 
-# ✅ 6. Final Notes
+#  5. Project Mangement
+
+We have used Trello Board for tracking the project progress
+
+![Trello_Board](images/Project_Management.png)
+
+>  **Trello Board Link:** *https://trello.com/b/LAb3GSBu/videogamesalesandratingsanalytics*
+
+---
+
+#  6. Final Notes
 
 This project satisfies all deliverables for **Phase 1, Phase 2, and Phase 3**, including:
 
@@ -214,5 +224,4 @@ This project satisfies all deliverables for **Phase 1, Phase 2, and Phase 3**, i
 * One-command executable environment via Docker
 * Required README with setup, execution, screenshots, and demo video sections
 
----
 

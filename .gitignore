@@ -22,13 +22,23 @@ env/
 .ipynb_checkpoints/
 
 # -----------------------
-# DBT build artifacts
+# DBT build artifacts (do not commit)
 # -----------------------
 dbt_packages/
 target/
 logs/
 
-# Those SHOULD be committed.
+# -----------------------
+# Environment / secrets
+# -----------------------
+.env
+*.env
+.env.local
+
+# -----------------------
+# Streamlit local settings
+# -----------------------
+.streamlit/
 
 # -----------------------
 # Docker local volumes (PostgreSQL data)
@@ -52,7 +62,7 @@ postgres_data/
 *.old
 
 # -----------------------
-# Node (if you ever add UI later)
+# Node 
 # -----------------------
 node_modules/
 npm-debug.log
